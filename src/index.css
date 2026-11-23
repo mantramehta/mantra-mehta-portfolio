@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", "Inter Variable", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-ink-950: #0c0d12;
+  --color-ink-900: #12141a;
+  --color-ink-850: #171a22;
+  --color-ink-800: #1d212b;
+  --color-ink-700: #2a2f3c;
+  --color-ink-600: #3b4150;
+
+  --color-fg: #eceae4;
+  --color-fg-muted: #b4b2aa;
+  --color-fg-subtle: #8a8b90;
+
+  --color-accent: #f2b55c;
+  --color-accent-soft: #f2b55c1f;
+  --color-sky: #8fb8ff;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-ink-950 font-sans text-fg antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: #f2b55c55;
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* Soft grain + glow behind the page; purely decorative. */
+.page-backdrop {
+  background:
+    radial-gradient(60rem 40rem at 85% -10%, #f2b55c14, transparent 60%),
+    radial-gradient(50rem 36rem at -10% 10%, #8fb8ff12, transparent 60%);
+}
+
+.grid-lines {
+  background-image:
+    linear-gradient(to right, #ffffff08 1px, transparent 1px),
+    linear-gradient(to bottom, #ffffff08 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+dialog::backdrop {
+  background: rgb(5 6 9 / 0.85);
+  backdrop-filter: blur(4px);
+}

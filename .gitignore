@@ -1,0 +1,23 @@
+# dependencies and build output
+node_modules
+dist
+*.tsbuildinfo
+
+# environment and secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# tooling and OS
+.vercel
+.DS_Store
+Thumbs.db
+npm-debug.log*
+
+# local-only source files (the site uses the optimized copies in public/)
+assets-src
+1784348720959.png
+/Mantra_Mehta_Resume.pdf
+*[Rr]esume*.pdf
+*[Cc][Vv]*.pdf
